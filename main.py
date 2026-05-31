@@ -7,7 +7,7 @@ import openpyxl
 # =========================
 # BOT TOKEN (INSIDE CODE)
 # =========================
-BOT_TOKEN = "8345551411:AAF-CIu9IErrC6_mLmd-jeXjPY92UfMDX6U"
+BOT_TOKEN = "8985767603:AAHRJs18ltx8ISno0kO58npiSUvJGEWkIpQ"
 
 class NumberFormatterBot:
     def __init__(self, token: str):
