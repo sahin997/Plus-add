@@ -3,8 +3,9 @@ from io import BytesIO
 import telebot
 from telebot import types
 import openpyxl
+import os
 
-BOT_TOKEN = "8345551411:AAF-CIu9IErrC6_mLmd-jeXjPY92UfMDX6U"
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 class NumberFormatterBot:
     def __init__(self, token: str):
@@ -69,7 +70,7 @@ class NumberFormatterBot:
         @self.bot.message_handler(commands=['start', 'help'])
         def send_welcome(message):
             markup = types.InlineKeyboardMarkup(row_width=2)
-            # 2x2 grid বাটন
+
             markup.row(
                 types.InlineKeyboardButton("📥 Send Numbers", callback_data="send_numbers"),
                 types.InlineKeyboardButton("📄 Upload File", callback_data="upload_file")
@@ -152,6 +153,6 @@ class NumberFormatterBot:
         self.bot.infinity_polling(timeout=60, long_polling_timeout=60)
 
 if __name__ == "__main__":
-    if not BOT_TOKEN or BOT_TOKEN == "YOUR_REAL_BOT_TOKEN_HERE":
-        raise SystemExit("❌ Please set your BOT_TOKEN inside the script.")
+    if not BOT_TOKEN:
+        raise SystemExit("❌ BOT_TOKEN missing! Set it in environment variables.")
     NumberFormatterBot(BOT_TOKEN).run()
